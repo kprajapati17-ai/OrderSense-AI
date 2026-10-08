@@ -30,48 +30,68 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 st.markdown("""
     <style>
-    /* High-Contrast Light Theme Custom Styling */
-    .main {
-        background-color: #f8fafc;
-        padding-top: 1rem;
-        color: #0f172a;
-    }
-    
-    .stAppHeader {
-        background-color: #f8fafc;
-    }
-
-    /* Streamlit Global Text & Label High-Contrast Overrides */
-    p, span, label, div, h1, h2, h3, h4, h5, h6 {
+    /* Complete Production Light Theme Overrides */
+    html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"], .stMainBlockContainer, [data-testid="stHeader"], [data-testid="stBottom"] {
+        background-color: #f8fafc !important;
         color: #0f172a !important;
     }
 
-    .stMarkdown, .stText {
+    /* Primary Heading and Section Titles */
+    h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
         color: #0f172a !important;
+        font-weight: 700 !important;
     }
 
-    /* Form Field Labels & Captions */
-    label[data-testid="stWidgetLabel"] p, .stCaptionContainer p {
+    /* Paragraphs and General Body Text */
+    p, span, div, label {
+        color: #1e293b !important;
+    }
+
+    /* Form Labels & Widget Captions */
+    label[data-testid="stWidgetLabel"] p, .stCaptionContainer p, [data-testid="stWidgetLabel"] span {
         color: #1e293b !important;
         font-weight: 600 !important;
         font-size: 14px !important;
     }
 
-    /* Expander Headers */
-    .st-emotion-cache-1h9usn1, div[data-testid="stExpander"] details summary p {
+    /* Expanders & Accordions */
+    div[data-testid="stExpander"] {
+        background-color: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 10px !important;
+        margin-bottom: 14px !important;
+        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+    }
+    div[data-testid="stExpander"] summary {
+        background-color: #ffffff !important;
+        border-radius: 10px !important;
+    }
+    div[data-testid="stExpander"] summary p, div[data-testid="stExpander"] summary span {
         color: #0f172a !important;
         font-weight: 700 !important;
         font-size: 15px !important;
     }
 
+    /* Input Controls (Selectbox, Number Input, Textarea) */
+    [data-baseweb="input"], [data-baseweb="select"] > div, textarea, .stSelectbox > div, .stNumberInput input {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
+    }
+    [data-baseweb="input"] input, textarea {
+        color: #0f172a !important;
+        background-color: #ffffff !important;
+    }
+
     /* Header Banner */
     .header-banner {
-        background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
         color: #ffffff !important;
         padding: 22px 28px;
         border-radius: 12px;
         margin-bottom: 24px;
-        box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
     }
     .header-banner h1 {
         font-family: 'Inter', system-ui, sans-serif;
@@ -93,17 +113,29 @@ st.markdown("""
         font-weight: 500;
     }
 
-    /* Card Panels */
-    .custom-card {
-        background-color: #ffffff;
-        border: 1px solid #cbd5e1;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    /* Information Alerts & Empty State Boxes */
+    .stAlert, div[data-testid="stNotification"] {
+        background-color: #eff6ff !important;
+        border: 1px solid #bfdbfe !important;
+        color: #1e40af !important;
+        border-radius: 10px !important;
+    }
+    .stAlert p, .stAlert span, .stAlert div {
+        color: #1e40af !important;
+        font-weight: 500 !important;
     }
 
-    /* Risk Badges with Strong Contrast */
+    /* Custom Cards */
+    .custom-card {
+        background-color: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+        margin-bottom: 20px !important;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+    }
+
+    /* Risk Badges */
     .risk-badge {
         display: inline-block;
         padding: 6px 14px;
@@ -114,58 +146,58 @@ st.markdown("""
         letter-spacing: 0.04em;
     }
     .risk-high {
-        background-color: #fee2e2;
+        background-color: #fee2e2 !important;
         color: #991b1b !important;
-        border: 1.5px solid #f87171;
+        border: 1.5px solid #f87171 !important;
     }
     .risk-medium {
-        background-color: #fef3c7;
+        background-color: #fef3c7 !important;
         color: #92400e !important;
-        border: 1.5px solid #fbbf24;
+        border: 1.5px solid #fbbf24 !important;
     }
     .risk-low {
-        background-color: #dcfce7;
+        background-color: #dcfce7 !important;
         color: #065f46 !important;
-        border: 1.5px solid #34d399;
+        border: 1.5px solid #34d399 !important;
     }
 
     /* AI Response Container */
     .agent-response-box {
-        background-color: #ffffff;
-        border: 1.5px solid #cbd5e1;
-        border-radius: 12px;
-        padding: 22px;
-        font-size: 15px;
-        line-height: 1.8;
+        background-color: #ffffff !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 12px !important;
+        padding: 22px !important;
+        font-size: 15px !important;
+        line-height: 1.8 !important;
         color: #0f172a !important;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
     }
-    .agent-response-box div {
+    .agent-response-box * {
         color: #0f172a !important;
     }
 
     /* Sidebar Clean Styling */
-    section[data-testid="stSidebar"] {
-        background-color: #ffffff;
-        border-right: 1.5px solid #cbd5e1;
+    section[data-testid="stSidebar"], section[data-testid="stSidebar"] > div {
+        background-color: #ffffff !important;
+        border-right: 1.5px solid #cbd5e1 !important;
     }
-    section[data-testid="stSidebar"] p, section[data-testid="stSidebar"] span {
+    section[data-testid="stSidebar"] p, section[data-testid="stSidebar"] span, section[data-testid="stSidebar"] h1, section[data-testid="stSidebar"] h2, section[data-testid="stSidebar"] h3 {
         color: #0f172a !important;
     }
 
-    /* Primary Action Buttons */
+    /* Buttons */
     .stButton>button {
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 14px;
+        border-radius: 8px !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
     }
     .stButton>button[kind="primary"] {
-        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
         color: #ffffff !important;
-        border: none;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
     }
-    .stButton>button[kind="primary"] p {
+    .stButton>button[kind="primary"] * {
         color: #ffffff !important;
     }
     </style>
