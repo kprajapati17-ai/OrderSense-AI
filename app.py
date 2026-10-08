@@ -230,10 +230,13 @@ with col_left:
     p_col1, p_col2, p_col3 = st.columns(3)
     if p_col1.button("🔥 High Risk Preset", use_container_width=True):
         st.session_state.preset_loaded = "high"
+        st.session_state.current_question = "The shoe size is too tight. How do I request an exchange or return?"
     if p_col2.button("🟠 Medium Risk Preset", use_container_width=True):
         st.session_state.preset_loaded = "medium"
+        st.session_state.current_question = "The product color looks slightly different from the image. Can I return it?"
     if p_col3.button("🟢 Low Risk Preset", use_container_width=True):
         st.session_state.preset_loaded = "low"
+        st.session_state.current_question = "How do I register the brand warranty and download my official tax invoice?"
 
     # Load Preset Values
     preset = st.session_state.preset_loaded
@@ -267,7 +270,10 @@ with col_left:
         def_returns = 0
         def_rating = 5.0
         def_query = "How do I register the brand warranty and download my official tax invoice?"
-    
+
+    if "current_question" not in st.session_state:
+        st.session_state.current_question = def_query
+
     with st.expander("1. Product & Payment Information", expanded=True):
         col1, col2 = st.columns(2)
         with col1:
@@ -305,22 +311,22 @@ with col_left:
             st.image(image, caption="Uploaded Product Photo", width=180)
 
     with st.expander("4. Customer Inquiry Query", expanded=True):
+        st.caption("Quick Queries (Click to auto-fill question):")
+        chip_col1, chip_col2, chip_col3 = st.columns(3)
+        if chip_col1.button("Size Issue", use_container_width=True):
+            st.session_state.current_question = "The size is too tight. How do I request an exchange or return?"
+        if chip_col2.button("Return Policy", use_container_width=True):
+            st.session_state.current_question = "What is the return and replacement policy window for this product?"
+        if chip_col3.button("Damaged Item", use_container_width=True):
+            st.session_state.current_question = "The product arrived damaged. How can I get a priority replacement?"
+
         question = st.text_area(
             "Customer Question / Message",
-            value=def_query,
+            value=st.session_state.current_question,
             height=90,
             placeholder="Type customer question here..."
         )
-        
-        # Quick Query Chips
-        st.caption("Quick Queries:")
-        chip_col1, chip_col2, chip_col3 = st.columns(3)
-        if chip_col1.button("Size Issue"):
-            question = "The size is too tight. How do I request an exchange or return?"
-        if chip_col2.button("Return Policy"):
-            question = "What is the return and replacement policy window for this product?"
-        if chip_col3.button("Damaged Item"):
-            question = "The product arrived damaged. How can I get a priority replacement?"
+        st.session_state.current_question = question
 
     analyze_btn = st.button("⚡ Analyze Order & Consult AI Support", type="primary", use_container_width=True)
 
