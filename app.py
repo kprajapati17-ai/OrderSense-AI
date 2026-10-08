@@ -88,28 +88,30 @@ st.markdown("""
     .header-banner {
         background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
         color: #ffffff !important;
-        padding: 22px 28px;
-        border-radius: 12px;
-        margin-bottom: 24px;
-        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+        padding: 26px 32px;
+        border-radius: 14px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
+        text-align: center;
     }
     .header-banner h1 {
         font-family: 'Inter', system-ui, sans-serif;
-        font-size: 26px;
+        font-size: 34px;
         font-weight: 800;
         margin: 0;
         color: #ffffff !important;
         display: flex;
         align-items: center;
-        gap: 10px;
+        justify-content: center;
+        gap: 12px;
     }
     .header-banner h1 span {
         color: #facc15 !important;
     }
     .header-banner p {
-        font-size: 14.5px;
+        font-size: 16px;
         color: #f1f5f9 !important;
-        margin: 6px 0 0 0;
+        margin: 8px 0 0 0;
         font-weight: 500;
     }
 
