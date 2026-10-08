@@ -213,66 +213,9 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# -----------------------------------------------------------------------------
-# Sidebar: Control Panel & Preset Scenarios
-# -----------------------------------------------------------------------------
-st.sidebar.title("📌 Control Panel")
-st.sidebar.markdown("Select a quick test scenario or enter details manually.")
-
 # Preset Scenarios State Initialization
 if "preset_loaded" not in st.session_state:
     st.session_state.preset_loaded = "high"
-
-col_s1, col_s2, col_s3 = st.sidebar.columns(3)
-if col_s1.button("🔥 High", help="Load High Risk Preset"):
-    st.session_state.preset_loaded = "high"
-if col_s2.button("🟠 Med", help="Load Medium Risk Preset"):
-    st.session_state.preset_loaded = "medium"
-if col_s3.button("🟢 Low", help="Load Low Risk Preset"):
-    st.session_state.preset_loaded = "low"
-
-# Load Preset Default Values
-preset = st.session_state.preset_loaded
-if preset == "high":
-    def_cat = "Footwear"
-    def_price = 3499.0
-    def_disc = 45.0
-    def_pay = "COD"
-    def_tenure = 120
-    def_orders = 4
-    def_returns = 3
-    def_rating = 2.0
-    def_query = "The shoe size is too tight. How do I request an exchange or return?"
-elif preset == "medium":
-    def_cat = "Apparel"
-    def_price = 1499.0
-    def_disc = 30.0
-    def_pay = "Wallet"
-    def_tenure = 250
-    def_orders = 7
-    def_returns = 1
-    def_rating = 4.0
-    def_query = "The product color looks slightly different from the image. Can I return it?"
-else:
-    def_cat = "Electronics"
-    def_price = 12999.0
-    def_disc = 10.0
-    def_pay = "Prepaid_UPI"
-    def_tenure = 850
-    def_orders = 28
-    def_returns = 0
-    def_rating = 5.0
-    def_query = "How do I register the brand warranty and download my official tax invoice?"
-
-st.sidebar.divider()
-st.sidebar.markdown("### 📊 System Metadata")
-st.sidebar.info(
-    "**Architecture:** Multi-Modal ML Pipeline\n\n"
-    "• **Tabular ML:** RandomForestClassifier\n"
-    "• **Vision Model:** TensorFlow Lite (224×224)\n"
-    "• **AI Support Agent:** Mistral AI API / Local Engine\n\n"
-    "**Project:** OrderSense-AI"
-)
 
 # -----------------------------------------------------------------------------
 # Main Application Grid Layout
@@ -281,6 +224,49 @@ col_left, col_right = st.columns([1.1, 0.9], gap="medium")
 
 with col_left:
     st.markdown("### 📦 Order Details & Telemetry")
+    
+    # Quick Test Presets (Above Form Fields)
+    st.caption("Quick Test Presets (One-click auto-fill):")
+    p_col1, p_col2, p_col3 = st.columns(3)
+    if p_col1.button("🔥 High Risk Preset", use_container_width=True):
+        st.session_state.preset_loaded = "high"
+    if p_col2.button("🟠 Medium Risk Preset", use_container_width=True):
+        st.session_state.preset_loaded = "medium"
+    if p_col3.button("🟢 Low Risk Preset", use_container_width=True):
+        st.session_state.preset_loaded = "low"
+
+    # Load Preset Values
+    preset = st.session_state.preset_loaded
+    if preset == "high":
+        def_cat = "Footwear"
+        def_price = 3499.0
+        def_disc = 45.0
+        def_pay = "COD"
+        def_tenure = 120
+        def_orders = 4
+        def_returns = 3
+        def_rating = 2.0
+        def_query = "The shoe size is too tight. How do I request an exchange or return?"
+    elif preset == "medium":
+        def_cat = "Apparel"
+        def_price = 1499.0
+        def_disc = 30.0
+        def_pay = "Wallet"
+        def_tenure = 250
+        def_orders = 7
+        def_returns = 1
+        def_rating = 4.0
+        def_query = "The product color looks slightly different from the image. Can I return it?"
+    else:
+        def_cat = "Electronics"
+        def_price = 12999.0
+        def_disc = 10.0
+        def_pay = "Prepaid_UPI"
+        def_tenure = 850
+        def_orders = 28
+        def_returns = 0
+        def_rating = 5.0
+        def_query = "How do I register the brand warranty and download my official tax invoice?"
     
     with st.expander("1. Product & Payment Information", expanded=True):
         col1, col2 = st.columns(2)
