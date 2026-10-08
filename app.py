@@ -30,101 +30,143 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 st.markdown("""
     <style>
-    /* Clean Light Theme Custom Styling */
+    /* High-Contrast Light Theme Custom Styling */
     .main {
         background-color: #f8fafc;
         padding-top: 1rem;
+        color: #0f172a;
     }
     
     .stAppHeader {
         background-color: #f8fafc;
     }
 
+    /* Streamlit Global Text & Label High-Contrast Overrides */
+    p, span, label, div, h1, h2, h3, h4, h5, h6 {
+        color: #0f172a !important;
+    }
+
+    .stMarkdown, .stText {
+        color: #0f172a !important;
+    }
+
+    /* Form Field Labels & Captions */
+    label[data-testid="stWidgetLabel"] p, .stCaptionContainer p {
+        color: #1e293b !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+    }
+
+    /* Expander Headers */
+    .st-emotion-cache-1h9usn1, div[data-testid="stExpander"] details summary p {
+        color: #0f172a !important;
+        font-weight: 700 !important;
+        font-size: 15px !important;
+    }
+
     /* Header Banner */
     .header-banner {
-        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-        color: #ffffff;
-        padding: 20px 28px;
+        background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+        color: #ffffff !important;
+        padding: 22px 28px;
         border-radius: 12px;
         margin-bottom: 24px;
-        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+        box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
     }
     .header-banner h1 {
         font-family: 'Inter', system-ui, sans-serif;
         font-size: 26px;
         font-weight: 800;
         margin: 0;
-        color: #ffffff;
+        color: #ffffff !important;
         display: flex;
         align-items: center;
         gap: 10px;
     }
     .header-banner h1 span {
-        color: #facc15;
+        color: #facc15 !important;
     }
     .header-banner p {
-        font-size: 14px;
-        color: #e0e7ff;
+        font-size: 14.5px;
+        color: #f1f5f9 !important;
         margin: 6px 0 0 0;
+        font-weight: 500;
     }
 
     /* Card Panels */
     .custom-card {
         background-color: #ffffff;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #cbd5e1;
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
     }
 
-    /* Risk Badges */
+    /* Risk Badges with Strong Contrast */
     .risk-badge {
         display: inline-block;
         padding: 6px 14px;
         border-radius: 20px;
-        font-weight: 700;
+        font-weight: 800;
         font-size: 13px;
         text-transform: uppercase;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.04em;
     }
     .risk-high {
         background-color: #fee2e2;
-        color: #dc2626;
-        border: 1px solid #fca5a5;
+        color: #991b1b !important;
+        border: 1.5px solid #f87171;
     }
     .risk-medium {
         background-color: #fef3c7;
-        color: #d97706;
-        border: 1px solid #fcd34d;
+        color: #92400e !important;
+        border: 1.5px solid #fbbf24;
     }
     .risk-low {
         background-color: #dcfce7;
-        color: #16a34a;
-        border: 1px solid #86efac;
+        color: #065f46 !important;
+        border: 1.5px solid #34d399;
     }
 
     /* AI Response Container */
     .agent-response-box {
         background-color: #ffffff;
-        border: 1px solid #cbd5e1;
+        border: 1.5px solid #cbd5e1;
         border-radius: 12px;
-        padding: 20px;
-        font-size: 14.5px;
-        line-height: 1.75;
-        color: #1e293b;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        padding: 22px;
+        font-size: 15px;
+        line-height: 1.8;
+        color: #0f172a !important;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+    .agent-response-box div {
+        color: #0f172a !important;
     }
 
     /* Sidebar Clean Styling */
     section[data-testid="stSidebar"] {
         background-color: #ffffff;
-        border-right: 1px solid #e2e8f0;
+        border-right: 1.5px solid #cbd5e1;
+    }
+    section[data-testid="stSidebar"] p, section[data-testid="stSidebar"] span {
+        color: #0f172a !important;
     }
 
+    /* Primary Action Buttons */
     .stButton>button {
         border-radius: 8px;
-        font-weight: 600;
+        font-weight: 700;
+        font-size: 14px;
+    }
+    .stButton>button[kind="primary"] {
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        color: #ffffff !important;
+        border: none;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    .stButton>button[kind="primary"] p {
+        color: #ffffff !important;
     }
     </style>
 """, unsafe_allow_html=True)
